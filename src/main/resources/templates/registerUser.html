@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head th:replace="fragments :: boots_trap">
+    <meta charset="UTF-8">
+    <title>Register User</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+          rel="stylesheet"
+          integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+          crossorigin="anonymous">
+
+</head>
+<body>
+
+<div class="container col-md-offset-3 col-md-8 mt-lg-5">
+    <div th:replace="fragments :: nav_bar"></div>
+    <div class="row mt-2">
+        <div th:if="${param.success}">
+            Registration is successfully, check your email to complete registration !!!
+        </div>
+        <div th:if="${emailExistedError}" class="alert alert-danger" role="alert">
+            <p th:text="${emailExistedError}"></p>
+        </div>
+    </div>
+    <form th:action="@{/register/create}" method="post" th:object="${registerUser}" class="px-4 mt-lg-5">
+        <h3 th:align="center">Registration</h3>
+        <div class="mb-3 row">
+            <label for="firstName" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter First Name" required="required" autofocus="autofocus" >
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="lastName" class="col-sm-2 col-form-label">Surname</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter Last Name" required="required" autofocus="autofocus" >
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="email" class="col-sm-2 col-form-label">E-Mail</label>
+            <div class="col-sm-6">
+                <input type="email" class="form-control" id="email" name="email" placeholder="Enter E-Mail" required="required" autofocus="autofocus" >
+            </div>
+        </div>
+        <div class="mb-3 row">
+            <label for="password" class="col-sm-2 col-form-label">Password</label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" id="password" name="password" placeholder="Enter Password" required="required" autofocus="autofocus" >
+            </div>
+        </div>
+        <div>
+            <button type="submit" class="btn btn-success" >Register</button>
+            <span>Registered Already? <a href="#" th:href="@{/login}">Login</a></span>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
